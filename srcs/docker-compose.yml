@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/
+    image: nginx:42
+    ports:
+      - '443:443'
+    volumes:
+      - wp:/var/www/html
+    networks:
+      - inception
+    env_file:
+      - .env
+    depends_on: 
+      - wordpress
+    restart: unless-stopped
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress/
+    image: wordpress:42
+    env_file:
+      - .env
+    volumes:
+      - wp:/var/www/html
+    networks:
+      - inception
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/
+    image: mariadb:42
+    volumes:
+      - mariadb:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - inception
+    restart: unless-stopped
+
+volumes:
+  mariadb:
+    driver: local
+    ##add these options once the VM is created
+    ##because the volumes should be stored on the VM
+    #driver_opts:
+    #  type: none
+    #  o: bind
+    #  device: /home/hrothery/data/mariadb 
+  wp:
+    driver: local
+    #driver_opts:
+    #  type: none
+    #  o: bind
+     # device: /home/hrothery/data/wp
+  
+networks:
+  inception:
+    driver: bridge

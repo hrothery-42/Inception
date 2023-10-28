@@ -1,0 +1,42 @@
+#!/bin/bash
+
+cd /var/www/html
+
+#remove any existing conf files
+rm -rf *
+
+#install wp-cli and rename to wp
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
+chmod +x wp-cli.phar 
+mv wp-cli.phar /usr/local/bin/wp
+
+#download and install wordpress
+wp core download --allow-root 
+
+#rename the sample config file as default config
+mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+#change the important data in the config file
+sed -i -r "s/database_name_here/$DB_NAME/1"   wp-config.php
+sed -i -r "s/username_here/$DB_USER/1"  wp-config.php
+sed -i -r "s/password_here/$DB_PWD/1"    wp-config.php
+sed -i -r "s/localhost/mariadb/1"    wp-config.php
+
+#install wordpress
+wp core install  --url=${WP_URL} \
+	--title=${WP_TITLE} \
+	--admin_user=${WP_ADMIN_LOGIN} \
+	--admin_password=${WP_LOGIN_PASSWORD} \
+	--admin_email=${WP_ADMIN_EMAIL} \
+	--skip-email --allow-root
+
+wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
+	--user_pass=${WP_USER_PASSWORD} \
+	--allow-root --role=author 
+
+#listen on all ports so wordpress can connect outside its container
+sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
+
+mkdir /run/php
+
+#run in foreground
+/usr/sbin/php-fpm7.3 -F
