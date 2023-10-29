@@ -1,6 +1,7 @@
 all: up
 
 up: 
+	@bash srcs/requirements/wordpress/tools/make_dir.sh
 	@docker-compose -f ./srcs/docker-compose.yml up -d
 
 down : 
