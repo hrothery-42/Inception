@@ -8,6 +8,7 @@ services:
     ports:
       - '443:443'
     volumes:
+      - /home/hrothery/Inception/srcs/requirements/tools:/etc/nginx/ssl/
       - wp:/var/www/html
     networks:
       - inception
@@ -46,18 +47,16 @@ services:
 volumes:
   mariadb:
     driver: local
-    ##add these options once the VM is created
-    ##because the volumes should be stored on the VM
-    #driver_opts:
-    #  type: none
-    #  o: bind
-    #  device: /home/hrothery/data/mariadb 
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hrothery/data/mariadb 
   wp:
     driver: local
-    #driver_opts:
-    #  type: none
-    #  o: bind
-     # device: /home/hrothery/data/wp
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hrothery/data/wp
   
 networks:
   inception:
