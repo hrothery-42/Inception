@@ -8,7 +8,7 @@ server {
     server_name hrothery.42.fr;
 
     ssl_certificate /etc/nginx/ssl/hrothery.42.fr.crt;
-    ssl_certificate_key /etc/nginx/ssl/hrothery42.fr.key;" > /etc/nginx/sites-available/default
+    ssl_certificate_key /etc/nginx/ssl/hrothery.42.fr.key;" > /etc/nginx/sites-available/default
 
 echo '
     ssl_protocols TLSv1.3;
