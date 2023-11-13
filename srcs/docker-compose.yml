@@ -36,12 +36,20 @@ services:
     container_name: mariadb
     build: ./requirements/mariadb/
     image: mariadb:42
+    args: 
+      DB_HOST=mariadb
+      DB_NAME=mariadb
+      DB_USER=hrothery
+      DB_PWD=12345
+      ROOT_PWD=12345
     volumes:
       - mariadb:/var/lib/mysql
     env_file:
       - .env
     networks:
       - inception
+    ports:
+      - "3306:3306"
     restart: unless-stopped
 
 volumes:
