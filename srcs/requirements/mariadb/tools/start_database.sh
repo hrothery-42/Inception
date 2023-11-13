@@ -8,9 +8,11 @@ service mysql start
 echo "CREATE DATABASE IF NOT EXISTS $DB_NAME ;" > db.sql
 echo "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD' ;" >> db.sql
 echo "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%' ;" >> db.sql
+echo "FLUSH PRIVILEGES;" >> db.sql
 
 #alters root password
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$ROOT_PWD' ;" >> db1.sql
+echo "ALTER USER 'root'@'%' IDENTIFIED BY '$ROOT_PWD' ; >> db1.sql
 
 #refreshes the db table with the new data
 echo "FLUSH PRIVILEGES;" >> db.sql
