@@ -1,7 +1,5 @@
 FROM alpine:3.16
 
-#args will be deleted after runtime while
-# env will stay in the environment forever (not desired)
 ARG DB_HOST DB_NAME DB_USER DB_PWD ROOT_PWD
 
 RUN apk update && apk add --no-cache mariadb mariadb-client
@@ -24,11 +22,8 @@ RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
 EXPOSE 3306
 
-
 COPY ./tools/create_db.sh .
 RUN sh create_db.sh && rm create_db.sh
 USER mysql
-COPY tools/db.sh .
-ENTRYPOINT  ["sh", "db.sh"]
 CMD ["/usr/bin/mysqld", "--skip-log-error"]
 
