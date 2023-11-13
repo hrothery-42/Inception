@@ -37,11 +37,11 @@ services:
     build: ./requirements/mariadb/
     image: mariadb:42
     environment: 
-      DB_HOST=${DB_HOST}
-      DB_NAME=${DB_NAME}
-      DB_USER=${DB_USER}
-      DB_PWD=${DB_PWD}
-      ROOT_PWD=${ROOT_PWD}
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PWD=${DB_PWD}
+      - ROOT_PWD=${ROOT_PWD}
     volumes:
       - mariadb:/var/lib/mysql
     env_file:
