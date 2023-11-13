@@ -25,7 +25,7 @@ RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 EXPOSE 3306
 
 
-COPY requirements/mariadb/tools/create_db.sh .
+COPY ./tools/create_db.sh .
 RUN bash create_db.sh && rm create_db.sh
 USER mysql
 COPY tools/db.sh .
