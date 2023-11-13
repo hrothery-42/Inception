@@ -36,12 +36,12 @@ services:
     container_name: mariadb
     build: ./requirements/mariadb/
     image: mariadb:42
-    args: 
-      DB_HOST=mariadb
-      DB_NAME=mariadb
-      DB_USER=hrothery
-      DB_PWD=12345
-      ROOT_PWD=12345
+    environment: 
+      DB_HOST=${DB_HOST}
+      DB_NAME=${DB_NAME}
+      DB_USER=${DB_USER}
+      DB_PWD=${DB_PWD}
+      ROOT_PWD=${ROOT_PWD}
     volumes:
       - mariadb:/var/lib/mysql
     env_file:
