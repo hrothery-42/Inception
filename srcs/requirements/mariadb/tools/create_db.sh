@@ -7,12 +7,10 @@ cat << EOF > /tmp/create_db.sql
 
 USE mysql;
 FLUSH PRIVILEGES;
-DELETE FROM     mysql.user WHERE User='';
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+CREATE DATABASE IF NOT EXISTS ${DB_NAME};
+CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED by '${DB_PWD}';
+GRANT ALL PRIVILEGES ON *.* TO '${DB_USER}'@'%';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${ROOT_PWD}';
-CREATE DATABASE ${DB_NAME} CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE USER '${DB_USER}'@'%' IDENTIFIED by '${DB_PWD}';
-GRANT ALL PRIVILEGES ON wordpress.* TO '${DB_USER}'@'%';
 FLUSH PRIVILEGES;
 EOF
 		# bootstrap executes the commands then the tmp file is deleted
