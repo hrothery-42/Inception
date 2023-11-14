@@ -25,6 +25,7 @@ services:
     env_file:
       - .env
     volumes:
+      - /home/hrothery/Inception/srcs/requirements/mariadb/tools/init.sql:/docker-entrypoint-initdb.d/init.sql
       - wp:/var/www/html
     networks:
       - inception
