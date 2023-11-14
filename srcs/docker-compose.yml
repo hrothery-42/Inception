@@ -50,7 +50,6 @@ services:
       - mariadb
     restart: unless-stopped
 
-
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb/
