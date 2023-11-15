@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM alpine:3.17-stable
 
 ARG WP_URL WP_TITLE WP_NAME \
 	WP_ADMIN_LOGIN WP_ADMIN_PASSWORD \
@@ -7,7 +7,7 @@ ARG WP_URL WP_TITLE WP_NAME \
 
 EXPOSE 9000
 
-RUN apt-get update && apt-get install -y curl php7.3 php-fpm php-mysql
+RUN apk update && apk add -y curl php7.3 php-fpm php-mysql
 
 COPY ./tools/wp_start.sh /
 

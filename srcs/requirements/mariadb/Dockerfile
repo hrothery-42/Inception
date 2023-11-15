@@ -1,10 +1,10 @@
-FROM debian:buster
+FROM alpine:3.17-stable
 
 ARG DB_HOST DB_NAME DB_USER DB_PWD ROOT_PWD
 
-RUN apt-get update
+RUN apk update
 
-RUN apt-get install -y mariadb-server 
+RUN apk add -y mariadb-server 
 
 COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
 
