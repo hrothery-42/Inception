@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:Bullseye
 
 ARG WP_URL WP_TITLE WP_NAME \
 	WP_ADMIN_LOGIN WP_ADMIN_PASSWORD \
