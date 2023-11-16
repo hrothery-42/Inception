@@ -28,8 +28,7 @@ clean:
 	docker rmi -f $$(docker images -qa) || true
 	docker volume rm $$(docker volume ls -q) || true
 	docker network rm $$(docker network ls -q) || true
-	sudo rm -rf ../data/wordpress/
-	sudo rm -rf ../data/mariadb/
+	sudo rm -rf ../data/
 
 .PHONY: all up down start stop status re clean
 
