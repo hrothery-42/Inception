@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 
 ARG DB_HOST DB_NAME DB_USER DB_PWD ROOT_PWD
 
