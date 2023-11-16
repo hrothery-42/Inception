@@ -1,4 +1,4 @@
-FROM debian:bustoer
+FROM debian:buster
 
 RUN apt-get update
 
