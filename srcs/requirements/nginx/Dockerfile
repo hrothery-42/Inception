@@ -1,4 +1,4 @@
-FROM debian:oldstable
+FROM debian:bustoer
 
 RUN apt-get update
 
