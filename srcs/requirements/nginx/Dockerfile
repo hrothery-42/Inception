@@ -1,4 +1,4 @@
-FROM debian:Bullseye
+FROM debian:oldstable
 
 RUN apt-get update
 

@@ -1,4 +1,4 @@
-FROM debian:Bullseye
+FROM debian:oldstable
 
 ARG DB_HOST DB_NAME DB_USER DB_PWD ROOT_PWD
 
