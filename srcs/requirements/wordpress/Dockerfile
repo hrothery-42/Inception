@@ -12,7 +12,7 @@ RUN sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /
 RUN wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add - 
 
 RUN apt-get update && apt-get install -y curl \
-	php8.2 php8.2-fpm php8.2-mysqli
+	php8 php8-fpm php8-mysqli
 
 COPY ./tools/wp_start.sh /
 
