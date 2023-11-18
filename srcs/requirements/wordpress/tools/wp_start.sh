@@ -36,9 +36,11 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 	--allow-root --role=author 
 
 #listen on all ports so wordpress can connect outside its container
-sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
+#sed -i 's/listen = \/run\/php\/php-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
+    /etc/php8/php-fpm.d/www.conf
 
-mkdir /run/php
+mkdir /run/php8
 
 #run in foreground
-/usr/sbin/php-fpm7.3 -F
+/usr/sbin/php-fpm8 -F

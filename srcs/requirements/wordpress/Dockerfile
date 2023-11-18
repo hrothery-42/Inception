@@ -7,7 +7,8 @@ ARG WP_URL WP_TITLE WP_NAME \
 
 EXPOSE 9000
 
-RUN apt-get update && apt-get install -y curl php7.3 php-fpm php-mysql
+RUN apt-get update && apt-get install -y curl \
+	php8 php8-fpm php8-mysqli
 
 COPY ./tools/wp_start.sh /
 
