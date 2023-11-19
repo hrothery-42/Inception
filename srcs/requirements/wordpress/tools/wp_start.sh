@@ -38,9 +38,9 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 #listen on all ports so wordpress can connect outside its container
 #sed -i 's/listen = \/run\/php\/php-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
 sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
-    /etc/php8.2/php-fpm.d/www.conf
+    /etc/php7.4/php-fpm.d/www.conf
 
-mkdir /run/php8.2
+mkdir /run/php7.4
 
 #run in foreground
-/usr/sbin/php-fpm8.2 -F
+/usr/sbin/php-fpm7.4 -F

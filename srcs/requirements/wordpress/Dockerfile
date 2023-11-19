@@ -7,12 +7,8 @@ ARG WP_URL WP_TITLE WP_NAME \
 
 EXPOSE 9000
 
-RUN apt-get install software-properties-common ca-certificates lsb-release apt-transport-https
-RUN sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list' 
-RUN wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add - 
-
 RUN apt-get update && apt-get install -y curl \
-	php8 php8-fpm php8-mysqli
+	php php-fpm php-mysqli
 
 COPY ./tools/wp_start.sh /
 

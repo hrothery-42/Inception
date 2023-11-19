@@ -1,12 +1,12 @@
 version: '3'
 
 volumes:
-  mariadb:
+  mysql:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/hrothery/data/mariadb 
+      device: /home/hrothery/data/mysql 
   wp:
     driver: local
     driver_opts:
@@ -57,7 +57,7 @@ services:
     env_file:
       - .env
     volumes:
-      - mariadb:/var/lib/mysql
+      - mysql:/var/lib/mysql
     networks:
       - inception
     ports:
