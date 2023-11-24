@@ -43,4 +43,4 @@ sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
 mkdir /run/php7
 
 #run in foreground
-/usr/sbin/php-fpm7.4 -F
+/usr/sbin/php-fpm7 -F
