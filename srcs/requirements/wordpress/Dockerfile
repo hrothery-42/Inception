@@ -1,14 +1,14 @@
 FROM debian:bullseye
 
-ARG WP_URL WP_TITLE WP_NAME \
-	WP_ADMIN_LOGIN WP_ADMIN_PASSWORD \
-	WP_ADMIN_EMAIL WP_USER_LOGIN \
-	WP_USER_PASSWORD WP_USER_EMAIL
+RUN apt-get update && apt-get install -y curl \
+	php php-fpm php-mysqli mariadb-client
 
 EXPOSE 9000
 
-RUN apt-get update && apt-get install -y curl \
-	php php-fpm php-mysqli
+RUN mkdir -p /var/www/html && \
+sed -i 's#listen = 127.0.0.1:9000#listen = 0.0.0.0:9000#' /etc/php7/php-fpm.d/www.conf
+
+WORKDIR /var/www/html
 
 COPY ./tools/wp_start.sh /
 
