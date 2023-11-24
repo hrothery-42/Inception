@@ -21,7 +21,7 @@ chmod +x wp-config.php
 sed -i -r "s/database_name_here/$DB_NAME/1"   wp-config.php
 sed -i -r "s/username_here/$DB_USER/1"  wp-config.php
 sed -i -r "s/password_here/$DB_PWD/1"    wp-config.php
-sed -i -r "s/localhost/mariadb/1"    wp-config.php
+sed -i -r "s/localhost/$DB_HOST/1"    wp-config.php
 
 #install wordpress
 wp core install  --url="${WP_URL}" \
@@ -40,7 +40,7 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 #sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
 #    /etc/php7/php-fpm.d/www.conf
 
-mkdir /run/php7.4
+mkdir /run/php7.3
 
 #run in foreground
-/usr/sbin/php-fpm7.4 -F
+/usr/sbin/php-fpm7.3 -F
