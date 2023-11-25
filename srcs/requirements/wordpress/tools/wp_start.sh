@@ -42,8 +42,8 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 #sed -i 's/listen = \/run\/php\/php-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
 #sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
 #    /etc/php7/php-fpm.d/www.conf
-sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
-
+sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php7.4/fpm/pool.d/www.conf
+#this config file doesn't exist--i think debian uses version 7.4 and the location is specific to debian 
 mkdir /run/php
 #run in foreground
-exec php-fpm7.3 -F
+exec php-fpm7.4 -F #maybe need to run php7.4-fpm -F
