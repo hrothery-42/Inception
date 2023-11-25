@@ -46,8 +46,8 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 #sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
 #    /etc/php7/php-fpm.d/www.conf
 
-if [ ! -d "/run/php7.4" ]; then
-	mkdir /run/php7.4
+if [ ! -d "/run/php/php7.4" ]; then
+	mkdir /run/php/php7.4
 fi
 
 #run in foreground
