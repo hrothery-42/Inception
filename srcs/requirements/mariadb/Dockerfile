@@ -1,15 +1,20 @@
-FROM debian:bullseye
+FROM alpine:3.17
 
-ARG DB_HOST DB_NAME DB_USER DB_PWD ROOT_PWD
+RUN apk update && \ 
+    apk add mariadb mariadb-client  && \
+	mkdir -p /run/mysqld && \
+	chown -R mysql:mysql /run/mysqld && \
+    mysql_install_db --user=mysql --datadir=/var/lib/mysql && \
+	chown -R mysql:mysql /var/lib/mysql && \
+	sed -i 's/skip-networking/#skip-networking/g' /etc/my.cnf.d/mariadb-server.cnf && \
+    sed -i 's/#bind-address/bind-address/g' /etc/my.cnf.d/mariadb-server.cnf
 
-RUN apt-get update
+COPY ./tools/start_db.sh /tmp/start_db.sh
 
-RUN apt-get install -y mariadb-server 
+RUN chmod +x /tmp/start_db.sh
 
-COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
-
-COPY ./tools/start_database.sh /
+WORKDIR /tmp
 
 EXPOSE 3306
 
-CMD ["/start_database.sh"]
+CMD ["./start_db.sh"]
