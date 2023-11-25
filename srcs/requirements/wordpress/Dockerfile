@@ -1,12 +1,12 @@
 FROM alpine:3.17
 
 RUN apk update && \
-    apk add curl php8 php-fpm php-mysqli 
+    apk add --no-cache curl php8 php8-fpm php8-mysqli 
 
 EXPOSE 9000
 
 RUN mkdir -p /var/www/html && \
-	sed -i 's#listen = 127.0.0.1:9000#listen = 0.0.0.0:9000#' /etc/php/7.4/fpm/pool.d/www.conf
+	sed -i 's#listen = 127.0.0.1:9000#listen = 0.0.0.0:9000#' /etc/php8/php-fpm/conf
 COPY ./tools/wp_start.sh /
 
 CMD ["/wp_start.sh"]

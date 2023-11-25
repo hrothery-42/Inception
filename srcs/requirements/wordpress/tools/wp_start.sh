@@ -42,4 +42,4 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 #    /etc/php7/php-fpm.d/www.conf
 
 #run in foreground
-exec php-fpm7.4 -F
+php-fpm8 -F
