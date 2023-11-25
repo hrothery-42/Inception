@@ -3,6 +3,8 @@ FROM debian:bullseye
 RUN apt-get update && apt-get install -y curl \
 	php php-fpm php-mysqli
 
+RUN php-fpm -v
+
 EXPOSE 9000
 
 COPY ./tools/www.conf /etc/php7.3/fpm/pool.d/
