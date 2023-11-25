@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ ! -d "/var/www/html" ]; then
-	mkdir -p /var/www/html
-fi
+#if [ ! -d "/var/www/html" ]; then
+#	mkdir -p /var/www/html
+#fi
 
 cd /var/www/html
-
-if [ ! -d "/usr/local/bin/wp" ]; then
-
-#remove any existing conf files
-rm -rf *
 
 #install wp-cli and rename to wp
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
@@ -17,7 +12,7 @@ chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 
 #download and install wordpress
-wp core download --allow-root 
+wp core download --allow-root --locale=en_US
 
 #rename the sample config file as default config
 mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
@@ -46,11 +41,5 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 #sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
 #    /etc/php7/php-fpm.d/www.conf
 
-if [ ! -d "/run/php7.4" ]; then
-	mkdir /run/php7.4
-fi
-
 #run in foreground
 exec php-fpm7.4 -F
-
-fi
