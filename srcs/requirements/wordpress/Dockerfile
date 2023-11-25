@@ -7,4 +7,6 @@ EXPOSE 9000
 
 COPY ./tools/wp_start.sh /
 
+RUN chmod +x /wp_start
+
 CMD ["/wp_start.sh"]
