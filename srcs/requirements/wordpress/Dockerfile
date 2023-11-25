@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
 RUN apt-get update && apt-get install -y curl \
-	php7.4 php-fpm php-mysqli
+	php php-fpm php-mysqli
 
 EXPOSE 9000
 
