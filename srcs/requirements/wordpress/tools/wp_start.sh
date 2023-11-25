@@ -46,7 +46,7 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 #sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
 #    /etc/php7/php-fpm.d/www.conf
 
-mkdir /run/php7.3
+#mkdir /run/php7.3
 
 #run in foreground
 exec php-fpm7.3 -F
