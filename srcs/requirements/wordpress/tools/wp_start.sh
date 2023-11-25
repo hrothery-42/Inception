@@ -42,4 +42,4 @@ sed -i 's/listen = \/run\/php\/php-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/po
 #    /etc/php7/php-fpm.d/www.conf
 
 #run in foreground
-php-fpm8 -F
+php-fpm7.4 -F
