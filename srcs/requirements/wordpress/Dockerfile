@@ -1,7 +1,8 @@
-FROM alpine:3.17
+FROM debian:bullseye
 
-RUN apk update && \
-    apk add --no-cache curl php php-fpm php-mysqli 
+RUN apt update -y && \
+    apt install php-fpm php-mysql -y && \
+	apt install curl -y
 
 EXPOSE 9000
 

@@ -6,12 +6,14 @@ fi
 
 cd /var/www/html
 
+rm -rf *
+
 #install wp-cli and rename to wp
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
 chmod +x wp-cli.phar 
 mv wp-cli.phar /usr/local/bin/wp
 
-download and install wordpress
+#download and install wordpress
 wp core download --allow-root --locale=en_US
 
 #rename the sample config file as default config
