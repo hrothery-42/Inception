@@ -7,8 +7,6 @@ EXPOSE 9000
 
 COPY ./tools/www.conf /etc/php7.3/fpm/pool.d/
 
-WORKDIR /var/www/html
-
 COPY ./tools/wp_start.sh /
 
 CMD ["/wp_start.sh"]

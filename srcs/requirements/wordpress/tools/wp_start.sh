@@ -1,6 +1,12 @@
 #!/bin/bash
 
+if [ ! -d "/var/www/html" ]; then
+	mkdir -p /var/www/html
+fi
+
 cd /var/www/html
+
+if [ ! -d "/usr/local/bin/wp" ]; then
 
 #remove any existing conf files
 rm -rf *
@@ -44,3 +50,5 @@ mkdir /run/php7.3
 
 #run in foreground
 exec php-fpm7.3 -F
+
+fi
