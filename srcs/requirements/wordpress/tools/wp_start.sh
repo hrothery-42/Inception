@@ -43,4 +43,4 @@ wp user create ${WP_USER_LOGIN} ${WP_USER_EMAIL} \
 mkdir /run/php7.3
 
 #run in foreground
-/usr/sbin/php-fpm7.3 -F
+/usr/sbin/php7.3-fpm -F
