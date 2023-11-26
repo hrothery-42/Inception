@@ -1,16 +1,9 @@
 #!/bin/sh
-#!/bin/sh
 
-		cat << EOF > /tmp/init.sql
+echo "CREATE DATABASE IF NOT EXISTS $DB_NAME;" > init.sql
+echo "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD';" >> init.sql
+echo "GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%';" >> init.sql
+echo "FLUSH PRIVILEGES;" >> init.sql
 
-USE mysql;
-FLUSH PRIVILEGES;
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_PWD';
-CREATE DATABASE IF NOT EXISTS $DB_NAME;
-CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD';
-GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';
-FLUSH PRIVILEGES;
-EOF
-
-mysqld --user=mysql --bootstrap < /tmp/init.sql
+#mysqld --user=mysql --init-file=/tmp/init.sql
+/usr/bin/mysqld --user=mysql --bootstrap < /tmp/init.sql
