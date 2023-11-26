@@ -63,4 +63,6 @@ services:
     ports:
       - "3306:3306"
     restart: unless-stopped
+    command: /bin/sh -c "envsubst < /usr/local/bin/init.template > /usr/local/bin/init.sql && /usr/bin/mysqld --user=mysql --init-file=/usr/local/bin/init.sql"
+
 

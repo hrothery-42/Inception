@@ -9,11 +9,11 @@ RUN apk update && \
 	sed -i 's/skip-networking/#skip-networking/g' /etc/my.cnf.d/mariadb-server.cnf && \
     sed -i 's/#bind-address/bind-address/g' /etc/my.cnf.d/mariadb-server.cnf
 
-COPY ./tools/start_db.sh /tmp/start_db.sh
+COPY ./tools/start_db.sh /start_db.sh
 
 RUN chmod +x /tmp/start_db.sh
 
-WORKDIR /tmp
+WORKDIR /
 
 EXPOSE 3306
 
