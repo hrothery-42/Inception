@@ -1,7 +1,7 @@
 #!/bin/sh
 #!/bin/sh
 
-cat << EOF > /init.sql
+cat << EOF > /tmp/init.sql
 
 CREATE DATABASE IF NOT EXISTS $DB_NAME;
 CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD';
