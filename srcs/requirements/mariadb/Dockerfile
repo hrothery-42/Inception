@@ -11,7 +11,7 @@ RUN apk update && \
 
 COPY ./tools/start_db.sh /start_db.sh
 
-RUN chmod +x /tmp/start_db.sh
+RUN chmod +x /start_db.sh
 
 WORKDIR /
 
