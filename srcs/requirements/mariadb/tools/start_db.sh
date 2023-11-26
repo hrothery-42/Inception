@@ -8,4 +8,4 @@ CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD';
 GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%';"
 FLUSH PRIVILEGES;"
 
-mysqld --user=mysql --bootstrap < /init.sql
+mysqld --user=mysql --bootstrap < /tmp/init.sql
