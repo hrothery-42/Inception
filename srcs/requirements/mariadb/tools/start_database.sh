@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-service mysql start 
+mysqld_safe 
 
 #creates a mysql script called db.sql
 
@@ -22,4 +21,4 @@ mysql < db.sql
 kill $(cat /var/run/mysqld/mysqld.pid)
 
 #starts the server again
-/etc/init.d/mysql start
+mysqld
