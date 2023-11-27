@@ -22,4 +22,4 @@ mysql < db.sql
 kill $(cat /var/run/mysqld/mysqld.pid)
 
 #starts the server again
-mysqld
+/etc/init.d/mysql start
