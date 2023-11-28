@@ -8,6 +8,6 @@ echo "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD' ;" >> db.
 echo "GRANT ALL ON *.* TO '$DB_USER'@'%' ;" >> db.sql
 echo "FLUSH PRIVILEGES;" >>db.sql
 
-mv db.sql /var/lib/mysql/db.sql
-mysqld_safe
+mv db.sql /
+mysqld_safe --init-file="/db.sql"
 
